@@ -1,2 +1,2 @@
 # Java-Crescendo
-#THIS IS A TEST TO SEE IF THIS WORKS
+#Transfer of the python crescendo code into java
