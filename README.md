@@ -1,2 +1,4 @@
 # Java-Crescendo
-#Transfer of the python crescendo code into java
+#6/22/2024:
+#repository created
+#basic outline made
