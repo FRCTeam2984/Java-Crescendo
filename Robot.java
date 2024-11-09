@@ -26,6 +26,8 @@ public class Robot extends TimedRobot {
     TalonFX rearLeft = new TalonFX(ConstantID.kRearLeftChannel);
     TalonFX frontRight = new TalonFX(ConstantID.kFrontRightChannel);
     TalonFX rearRight = new TalonFX(ConstantID.kRearRightChannel);
+    PWMSparkMax UpperIntake = new PWMSparkMax(kUpperIntake);
+    PWMSparkMax LowerIntake = new PWMSparkMax(kLowerIntake);
     rearRight.setInverted(false);
     SendableRegistry.addChild(m_robotDrive, frontLeft);
     SendableRegistry.addChild(m_robotDrive, rearLeft);
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
     m_robotDrive = new MecanumDrive(frontLeft::set, rearLeft::set, frontRight::set, rearRight::set);
 
     stick = new Joystick(ConstantID.kJoystickChannel);
+    XboxController controller = new XboxController(1);
     // motor = new PWMSparkMax(13);
 
 
@@ -51,13 +54,18 @@ public class Robot extends TimedRobot {
     // movement, and Z axis for rotation.
     double speedMultiplier = 0.5;
     m_robotDrive.driveCartesian(-stick.getY()*-1*speedMultiplier, -stick.getZ()*speedMultiplier, -stick.getX()*speedMultiplier);
-    
+    if (controller.getXButtonPressed){
+      UpperIntake.set(0.1);
+      LowerIntake.set(0.1);
+    } else {
+      UpperIntake.set(0);
+      LowerIntake.set(0);
+    }
     // frontRight.setInverted(true);
     // rearRight.setInverted(true);
     // frontLeft.set(.1);
     // rearLeft.set(.1);
     // frontRight.set(.1);
     // rearRight.set(.1);
-
   }
 }
